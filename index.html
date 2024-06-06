@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book MyAshter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Top Navbar -->
+    <nav class="Navbar">
+      <a href="#" class="Navbar-logo">
+        <img src="LogoMyAshter.png" alt="" class="Navbar-logo-image" />
+        Book<span>My</span><span1>A</span1><span2>s</span2><span3>h</span3
+        ><span4>t</span4><span5>er</span5>
+      </a>
+      <div class="Navbar-nav"></div>
+      <a href="#"></a>
+      <div class="navbar-cari">
+        <input type="text" placeholder="search..." class="search-input" />
+        <span class="search-icons"><i data-feather="search"></i></span>
+      </div>
+      <div class="navbar-extraa">
+        <a href="#" id="menu"> <i data-feather="menu"></i><i></i></a>
+      </div>
+    </nav>
+
+    <!-- Image Slider -->
+    <div class="slider">
+      <div class="slides">
+        <div class="slide">
+          <img src="wa myashter.jpg" alt="Image 1" />
+        </div>
+        <div class="slide">
+          <video src="wa vidio.mp4" controls autoplay muted loop></video>
+        </div>
+        <div class="slide">
+          <img src="wa tentangkami.jpg" alt="Image 3" />
+        </div>
+      </div>
+      <button class="prev" onclick="prevSlide()">&lt;</button>
+      <button class="next" onclick="nextSlide()">&gt;</button>
+      <ul class="slide-indicators"></ul>
+    </div>
+
+    <!-- Navbar Bottom -->
+    <nav class="Navbar-bawah">
+      <div class="icons-bawah">
+        <a href="#" id="home" class="active">
+          <i data-feather="home"></i><i></i
+        ></a>
+        <a href="#" id="bintang"> <i data-feather="star"></i><i></i></a>
+        <a href="#" id="moon"> <i data-feather="moon"></i><i></i></a>
+      </div>
+    </nav>
+
+    <script>
+      feather.replace();
+
+      document.querySelectorAll(".icons-bawah a").forEach((link) => {
+        link.addEventListener("click", function () {
+          document
+            .querySelector(".icons-bawah a.active")
+            .classList.remove("active");
+          this.classList.add("active");
+        });
+      });
+
+      let slideIndex = 0;
+      const slides = document.querySelectorAll(".slide");
+      const totalSlides = slides.length;
+
+      function showSlides() {
+        slides.forEach((slide, index) => {
+          slide.style.display = index === slideIndex ? "block" : "none";
+        });
+      }
+
+      function nextSlide() {
+        slideIndex = (slideIndex + 1) % totalSlides;
+        showSlides();
+      }
+
+      function prevSlide() {
+        slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+        showSlides();
+      }
+
+      let slideInterval = setInterval(nextSlide, 3000); // Auto slide every 3 seconds
+
+      // Pause auto sliding when user interacts with controls
+      document.querySelector(".next").addEventListener("click", () => {
+        clearInterval(slideInterval);
+        nextSlide();
+        slideInterval = setInterval(nextSlide, 3000);
+      });
+
+      document.querySelector(".prev").addEventListener("click", () => {
+        clearInterval(slideInterval);
+        prevSlide();
+        slideInterval = setInterval(nextSlide, 3000);
+      });
+
+      showSlides(); // Show the first slide initially
+    </script>
+  </body>
+</html>
